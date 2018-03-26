@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RustBuster2016.API;
+using RustBuster2016;
 using UnityEngine;
 
 namespace GrassRemover
 {
-    public class GrassRemoverClass : RustBusterPlugin
+    public class GrassRemoverClass : RustBuster2016.API.RustBusterPlugin
     {
         public override string Name { get { return "GrassRemover"; } }
         public override string Author{get { return " by salva/juli (grass code by XandeTurf)"; }}
-        public override Version Version{get { return new Version("1.0"); }}
+        public override Version Version{get { return new Version("1.1"); }}
+        public static GrassRemoverClass Instance;
         public override void Initialize()
         {
+            Instance = this;
             if (this.IsConnectedToAServer)
             {
                 RustBuster2016.API.Hooks.OnRustBusterClientConsole += OnRustBusterClientConsole;
-                Rust.Notice.Popup("", "(" + Name + ") grass.on true | grass.on false", 60);
+                Rust.Notice.Popup("", "(" + Name + ") grass.on true | grass.on false", 40);
                 return;
             }
         }
